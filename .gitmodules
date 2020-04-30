@@ -1,0 +1,4 @@
+[submodule "serch1322/Sale-Order-Recurring"]
+	path = serch1322/Sale-Order-Recurring
+	url = git@github.com:serch1322/Sale-Order-Recurring.git
+	branch = master
