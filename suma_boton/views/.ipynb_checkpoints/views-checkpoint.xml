@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <-- explicit list view definition -->
+<--
+    <record model="ir.ui.view" id="suma_boton.list">
+      <field name="name">suma_boton list</field>
+      <field name="model">suma_boton.suma_boton</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <-- actions opening views on models -->
+<--
+    <record model="ir.actions.act_window" id="suma_boton.action_window">
+      <field name="name">suma_boton window</field>
+      <field name="res_model">suma_boton.suma_boton</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <-- server action to the one above -->
+<--
+    <record model="ir.actions.server" id="suma_boton.action_server">
+      <field name="name">suma_boton server</field>
+      <field name="model_id" ref="model_suma_boton_suma_boton"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <-- Top menu item -->
+<--
+    <menuitem name="suma_boton" id="suma_boton.menu_root"/>
+-->
+    <-- menu categories -->
+<--
+    <menuitem name="Menu 1" id="suma_boton.menu_1" parent="suma_boton.menu_root"/>
+    <menuitem name="Menu 2" id="suma_boton.menu_2" parent="suma_boton.menu_root"/>
+-->
+    <-- actions -->
+<--
+    <menuitem name="List" id="suma_boton.menu_1_list" parent="suma_boton.menu_1"
+              action="suma_boton.action_window"/>
+    <menuitem name="Server to list" id="suma_boton" parent="suma_boton.menu_2"
+              action="suma_boton.action_server"/>
+-->
+  </data>
+</odoo>
