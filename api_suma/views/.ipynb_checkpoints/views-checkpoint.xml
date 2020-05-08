@@ -1,0 +1,15 @@
+<odoo>
+  <data>
+        <record id="purchase_order_form" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="arch" type="xml">
+                <form string="Purchase Order" class="o_purchase_order">
+                <header>
+                    <button name="link_po" string="Generar Partidas" type="object" states="draft" class="oe_read_only" groups="base.group_user"/>
+                </header>
+                </form>
+            </field>
+        </record>
+  </data>
+</odoo>
