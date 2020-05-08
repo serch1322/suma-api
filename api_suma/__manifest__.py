@@ -27,8 +27,6 @@
         'security/ir.model.access.csv',
         'views/views.xml',
     ],
-    # only loaded in demonstration mode,
-    ],
     'installable': True,
     'auto_install': False,
     'application': False,
