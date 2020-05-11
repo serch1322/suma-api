@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- purchase ORDER RECURRING FORM VIEW -->
+	<record id="sh_purchase_recurring_form_view" model="ir.ui.view">
+		<field name="name">sh.purchase.recurring.form.view</field>
+		<field name="model">purchase.recurring</field>
+		<field name="arch" type="xml">
+			<form string="purchase Recurring Order">
+                <header>
+					<button name="create_order_manually" type="object" string="Create Order Manually" class="oe_highlight" attrs="{'invisible':[('state','!=','confirm')]}"/> 
+					<field name="state" widget="statusbar" clickable="True"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+	                    
+	                    <button class="oe_stat_button" name="action_view_recurring_order" type="object" icon="fa-usd" attrs="{'invisible': [('sh_purchase_recurring_count', '=', 0)]}">
+	                        <field string="purchases" name="sh_purchase_recurring_count" widget="statinfo"/>
+	                    </button>                    
+                    
+                    </div>	
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                        	<field name="title" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="partner_id" widget="res_partner_many2one" context="{'res_partner_search_mode': 'supplier', 'show_vat': True}"
+                                placeholder="Name, TIN, Email, or Reference"
+                                attrs="{'readonly':[('state','!=','draft')]}"
+                            />                            
+                            <field name="start_date" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="last_generated_date" invisible="1"/>
+                            <field name="order_type" widget="radio"/>
+                            <field name="active"/>
+                        </group>
+                        
+                        <group>
+                            <label for="recurring_interval"/>
+                            <div class="o_row" name="wage">
+                                <field name="recurring_interval" nolabel="1" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <span><field name="recurring_interval_unit" nolabel="1" attrs="{'readonly':[('state','!=','draft')]}"/></span>
+                            </div>    
+                            
+                            <label for="stop_recurring_interval"/>
+                            <div class="o_row" name="wage">
+                                <field name="stop_recurring_interval" nolabel="1" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <span><field name="stop_recurring_interval_unit" nolabel="1"/></span>
+                            </div>                                                 
+                        
+                            <label for="end_date"/>
+                            <div class="o_row">
+                                <field name="end_date" nolabel="1" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <span class="text-muted">(If fixed-term contract)</span>
+                            </div>                        
+                     
+                        </group>
+                    </group>                    
+                    <notebook>
+                        <page string="Order Lines">
+                        	<field name="order_line" attrs="{'readonly':[('state','!=','draft')]}">
+                                <tree string="purchases Order Lines" editable="bottom">
+                                    <field name="product_id"
+                                        force_save="1"/>
+                                    <field name="name"/>
+                                    <field name="product_qty"/>
+                                    <field name="price_unit"/>
+                                </tree>                        		
+                        	</field>
+                        </page>
+						<page name="internal_notes" string="Internal Notes">
+                            <field name="note" placeholder="Internal note..." attrs="{'readonly':[('state','!=','draft')]}"/>
+                        </page>
+                    </notebook>
+                                   
+                </sheet>			
+			</form>
+		</field>
+	</record>
+	
+	<!-- purchase recurring tree view -->
+   <record id="sh_purchase_recurring_tree_view" model="ir.ui.view">
+       <field name="name">purchase.order.tree</field>
+       <field name="model">purchase.recurring</field>
+       <field name="arch" type="xml">
+           <tree string="Recurring Orders">
+				<field name="name"/>
+				<field name="partner_id"/>
+				<field name="start_date"/>
+				<field name="end_date"/>
+				<field name="sh_purchase_recurring_count"/>
+				<field name="state"/>
+           </tree>
+       </field>
+   </record>	
+   
+   <!-- purchase RECURRING SEARCH VIEW -->
+        <record id="sh_purchase_recurring_search_view" model="ir.ui.view">
+            <field name="name">sh.purchase.recurring.search.view</field>
+            <field name="model">purchase.recurring</field>
+            <field name="arch" type="xml">
+                <search string="Search recurring Order">
+                    <field name="name" string="Recurring Order" filter_domain="['|',('name','ilike',self),('partner_id','child_of',self)]"/>
+                    <field name="partner_id" operator="child_of"/>
+                    
+                    <filter string="Active" domain="[('active','=',True)]" name="sh_recurring_active"/>
+                    <filter string="Inactive" domain="[('active','=',False)]" name="sh_recurring_inactive"/>
+
+                    <filter string="New" domain="[('state','=','draft')]" name="filter_new"/>
+                    <filter string="Running" domain="[('state','=','confirm')]" name="filter_confirm"/>
+                    <filter string="To Renew" domain="[('state','=','pending')]" name="filter_pending"/>
+                    <filter string="Expired" domain="[('state','=','done')]" name="filter_done"/>
+                    <filter string="Cancelled" domain="[('state','=','cancel')]" name="filter_cancel"/> 
+			   		<filter string="Start Date" name="filter_start_dt" date="start_date"/>  
+			   		<filter string="End Date" name="filter_end_dt" date="end_date"/>    			   		                                                                                 
+                                        
+                    <group expand="0" string="Group By">
+                        <filter name="customer_gb" string="Vendor" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter name="start_date_gb" string="Start Date" domain="[]" context="{'group_by':'start_date'}"/>   
+                        <filter name="end_date_gb" string="End Date" domain="[]" context="{'group_by':'end_date'}"/>  
+                        <filter name="state_gb" string="Status" domain="[]" context="{'group_by':'state'}"/>                                                                                         
+                    </group>
+               </search>
+            </field>
+        </record>   
+	
+	
+	<!-- purchase RECURRING ACTION -->
+	<record id="sh_purchase_recurring_action" model="ir.actions.act_window">
+        <field name="name">Purchase Recurring Order</field>	
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.recurring</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{
+        	'search_default_sh_recurring_active' : True
+        }</field>        
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create a new purchase recurring order here
+			</p>
+        </field>	
+		
+	</record>
+	
+	<!-- purchase RECURRING ORDER MENU -->
+     <menuitem id="sh_purchase_recurring_order_menu"
+         name="Recurring Orders"
+         action="sh_purchase_recurring_action"
+         parent="purchase.menu_procurement_management"
+  		 groups="purchase.group_purchase_user"         
+         sequence="2" 
+         />
+	
+	
+		
+</odoo>

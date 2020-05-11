@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_recurring_order,purchase.recurring,model_purchase_recurring,purchase.group_purchase_user,1,1,1,1
+access_purchase_recurring_line,purchase.recurring.line,model_purchase_recurring_line,purchase.group_purchase_user,1,1,1,1
+access_purchase_recurring_order_manager,purchase.recurring.manager,model_purchase_recurring,purchase.group_purchase_manager,1,1,1,1
+access_purchase_recurring_line_manager,purchase.recurring.line.manager,model_purchase_recurring_line,purchase.group_purchase_manager,1,1,1,1
