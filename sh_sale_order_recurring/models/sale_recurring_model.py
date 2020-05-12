@@ -202,6 +202,7 @@ class sale_recurring(models.Model):
                         'date_order'                : next_date,
                         'sh_sale_recurring_order_id': rec.id,
                         'origin'                    : rec.name,
+                        'x_studio_asunto'           : self.title,
                         })
                     order_line_list = []
                     if rec.order_line:
@@ -214,6 +215,7 @@ class sale_recurring(models.Model):
                                     'discount'        : line.discount,
                                     'product_uom'     : line.product_id.uom_id.id,
                                     'name'            : line.name
+                                    'taxes_id'        : line.product_id.taxes_id
                                 }
                                 order_line_list.append((0,0,order_line_vals))
                     if order_line_list:
@@ -268,6 +270,7 @@ class sale_recurring(models.Model):
                     'date_order'                : next_date,
                     'sh_sale_recurring_order_id': self.id,
                     'origin'                    : self.name,
+                    'x_studio_asunto'           : self.title,
                     })
                 order_line_list = []
                 if self.order_line:
@@ -279,7 +282,8 @@ class sale_recurring(models.Model):
                                 'product_uom_qty' : line.product_uom_qty,
                                 'discount'        : line.discount,
                                 'product_uom'     : line.product_id.uom_id.id,
-                                'name'            : line.name
+                                'name'            : line.name,
+                                'taxes_id'        : line.product_id.taxes_id
                             }
                             order_line_list.append((0,0,order_line_vals))
                 if order_line_list:
