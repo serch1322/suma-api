@@ -189,6 +189,7 @@ class purchase_recurring(models.Model):
                     purchase_order_vals.update({
                         'partner_id'                : rec.partner_id.id,
                         'date_order'                : next_date,
+                        'x_studio_asunto'           : rec.title,
                         'sh_purchase_recurring_order_id': rec.id,
                         'origin'                    : rec.name,
                         })
@@ -261,6 +262,7 @@ class purchase_recurring(models.Model):
                     'date_order'                : next_date,
                     'sh_purchase_recurring_order_id': self.id,
                     'origin'                    : self.name,
+                    'x_studio_asunto'           : rec.title,
                     })
                 order_line_list = []
                 if self.order_line:
