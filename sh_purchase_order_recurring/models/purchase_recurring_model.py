@@ -204,7 +204,7 @@ class purchase_recurring(models.Model):
                                     'product_uom'     : line.product_id.uom_id.id,
                                     'name'            : line.name,
                                     'date_planned'    : next_date,
-                                    'taxes_id'        : line.product_id.taxes_id,
+                                    'taxes_id'        : line.product_id.supplier_taxes_id,
                                 }
                                 order_line_list.append((0,0,order_line_vals))
                     if order_line_list:
@@ -276,7 +276,7 @@ class purchase_recurring(models.Model):
                                 'product_uom'     : line.product_id.uom_id.id,
                                 'name'            : line.name,
                                 'date_planned'    : next_date,
-                                'taxes_id'        : line.product_id.taxes_id,
+                                'taxes_id'        : line.product_id.supplier_taxes_id,
                             }
                             order_line_list.append((0,0,order_line_vals))
                 if order_line_list:
