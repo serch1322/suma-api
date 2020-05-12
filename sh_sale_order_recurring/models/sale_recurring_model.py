@@ -215,7 +215,7 @@ class sale_recurring(models.Model):
                                     'discount'        : line.discount,
                                     'product_uom'     : line.product_id.uom_id.id,
                                     'name'            : line.name,
-                                    'taxes_id'        : line.product_id.taxes_id,
+                                    'taxes_id'        : line.product_id.tax_id,
                                 }
                                 order_line_list.append((0,0,order_line_vals))
                     if order_line_list:
@@ -283,7 +283,7 @@ class sale_recurring(models.Model):
                                 'discount'        : line.discount,
                                 'product_uom'     : line.product_id.uom_id.id,
                                 'name'            : line.name,
-                                'taxes_id'        : line.product_id.taxes_id,
+                                'taxes_id'        : line.product_id.tax_id,
                             }
                             order_line_list.append((0,0,order_line_vals))
                 if order_line_list:
