@@ -190,6 +190,7 @@ class purchase_recurring(models.Model):
                         'partner_id'                : rec.partner_id.id,
                         'date_order'                : next_date,
                         'x_studio_asunto'           : self.title,
+                        'x_studio_fecha_inicial'    : next_date,
                         'sh_purchase_recurring_order_id': rec.id,
                         'origin'                    : rec.name,
                         })
@@ -263,6 +264,7 @@ class purchase_recurring(models.Model):
                     'date_order'                : next_date,
                     'sh_purchase_recurring_order_id': self.id,
                     'origin'                    : self.name,
+                    'x_studio_fecha_inicial'    : next_date,
                     'x_studio_asunto'           : self.title,
                     })
                 order_line_list = []
