@@ -193,7 +193,7 @@ class purchase_recurring(models.Model):
                         'x_studio_fecha_inicial'    : next_date,
                         'sh_purchase_recurring_order_id': rec.id,
                         'origin'                    : rec.name,
-                        'payment_term_id'           : self.env['account.payment.term'].name,
+                        'payment_term_id'           : self.env['account.payment.term'].id,
                         })
                     order_line_list = []
                     if rec.order_line:
@@ -267,7 +267,7 @@ class purchase_recurring(models.Model):
                     'origin'                    : self.name,
                     'x_studio_fecha_inicial'    : next_date,
                     'x_studio_asunto'           : self.title,
-                    'payment_term_id'           : self.env['account.payment.term'].name,
+                    'payment_term_id'           : self.env['account.payment.term'].id,
                     })
                 order_line_list = []
                 if self.order_line:
