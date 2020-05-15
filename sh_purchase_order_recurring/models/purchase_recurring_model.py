@@ -193,7 +193,7 @@ class purchase_recurring(models.Model):
                         'x_studio_fecha_inicial'    : next_date,
                         'sh_purchase_recurring_order_id': rec.id,
                         'origin'                    : rec.name,
-                        'payment_term_id'           : self.partner_id.property_supplier_payment_term_id,
+                        'payment_term_id'           : fields.Many2one('account.payment.term', 'Payment Terms', domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]"),
                         })
                     order_line_list = []
                     if rec.order_line:
@@ -267,7 +267,7 @@ class purchase_recurring(models.Model):
                     'origin'                    : self.name,
                     'x_studio_fecha_inicial'    : next_date,
                     'x_studio_asunto'           : self.title,
-                    'payment_term_id'           : self.partner_id.property_supplier_payment_term_id,
+                    'payment_term_id'           : fields.Many2one('account.payment.term', 'Payment Terms', domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]"),
                     })
                 order_line_list = []
                 if self.order_line:
