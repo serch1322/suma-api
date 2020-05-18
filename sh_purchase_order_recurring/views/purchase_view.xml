@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<!-- purchase ORDER FORM VIEW -->
+    	<record id="sh_purchase_order_recurring_inherit_purchase_form" model="ir.ui.view">
+    		<field name="name">sh.purchase.order.recurring.inherit.purchase.form</field>
+    		<field name="model">purchase.order</field>
+    		<field name="inherit_id" ref="purchase.purchase_order_form"/>
+    		<field name="arch" type="xml">
+				<field name="partner_ref" position="after">
+					<field name="sh_purchase_recurring_order_id" readonly="True"/>
+				</field>
+    		</field>
+    	</record>
+	</data>
+</odoo>  
