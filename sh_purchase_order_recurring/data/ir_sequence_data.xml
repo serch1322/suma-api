@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<odoo>
+	<data noupdate="1">
+		<record id="sh_purchase_recurring_sequence" model="ir.sequence">
+			<field name="name">Purchase Recurring Sequence</field>
+			<field name="code">sh.purchase.recurring.sequence</field>
+			<field name="padding" eval="4"/>
+			<field name="prefix">PR-%(y)s-</field>
+		</record>
+	</data>
+</odoo>
