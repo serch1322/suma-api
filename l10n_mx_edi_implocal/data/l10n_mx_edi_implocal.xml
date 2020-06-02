@@ -18,7 +18,7 @@
             <attribute name="t-att-Importe">'%.*f' % (decimal_precision, transferred['amount'] - local_amount_transferred if local_amount_transferred else transferred['amount']) or 0.00</attribute>
         </xpath>
         <xpath expr="(//*[local-name()='Retencion'])[2]" position="before">
-            <t t-set="local_amount_withhold" t-value="sum(abs(value.amount) for value in withholding_local if abs(value.amount) == withhold['rate']) / 100 * record.amount_untaxed"/>
+            <t t-set="local_amount_withhold" t-value="sum(abs(value.amount) for value in withholding_local if abs(value.amount) == withhold['rate'])"/>
         </xpath>
         <xpath expr="(//*[local-name()='Retencion'])[2]" position="attributes">
             <attribute name="t-att-Importe">'%.*f' % (decimal_precision, withhold['amount'] - local_amount_withhold if local_amount_withhold else withhold['amount']) or 0.00</attribute>
@@ -39,7 +39,7 @@
                                 <implocal:TrasladosLocales
                                  t-att-ImpLocTrasladado="tax.name"
                                  t-att-TasadeTraslado="'%.6f' % round(abs(tax.amount), 2)"
-                                 t-att-Importe="'%.2f' % (abs(tax.amount) / 100 * float(record.amount_untaxed)) "
+                                 t-att-Importe="'%.2f' % (abs(tax.amount)) "
                                 />
                             </t>
                         </t>
@@ -47,8 +47,8 @@
                             <t t-foreach="withholding_local" t-as="tax">
                                 <implocal:RetencionesLocales
                                  t-att-ImpLocRetenido="tax.name"
-                                 t-att-TasadeRetencion="'%.6f' % round(abs(tax.amount), 2)"
-                                 t-att-Importe="'%.2f' % (abs(tax.amount) / 100 * float(record.amount_untaxed)) "
+                                 t-att-TasadeRetencion="0.00"
+                                 t-att-Importe="'%.2f' % (abs(tax.amount)) "
                                 />
                             </t>
                         </t>
