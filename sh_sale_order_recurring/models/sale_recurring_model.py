@@ -202,6 +202,7 @@ class sale_recurring(models.Model):
                         'date_order'                : next_date,
                         'sh_sale_recurring_order_id': rec.id,
                         'origin'                    : rec.name,
+                        'payment_term_id'           : rec.partner_id.property_payment_term_id
                         })
                     order_line_list = []
                     if rec.order_line:
@@ -268,6 +269,7 @@ class sale_recurring(models.Model):
                     'date_order'                : next_date,
                     'sh_sale_recurring_order_id': self.id,
                     'origin'                    : self.name,
+                    'payment_term_id'           : self.partner_id.property_payment_term_id
                     })
                 order_line_list = []
                 if self.order_line:
