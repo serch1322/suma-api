@@ -48,7 +48,7 @@
                                 <implocal:RetencionesLocales
                                  t-att-ImpLocRetenido="tax.name"
                                  t-att-TasadeRetencion="0.00"
-                                 t-att-Importe="'%.2f' % (abs(tax.amount)"
+                                 t-att-Importe="'%.2f' % (abs(tax.amount))"
                                 />
                             </t>
                         </t>
