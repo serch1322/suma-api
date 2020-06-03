@@ -8,7 +8,7 @@
             <t t-set="transferred_local" t-value="[value for value in record.invoice_line_ids.mapped('tax_ids').filtered(lambda r: r.invoice_repartition_line_ids.filtered(lambda rep: rep.tag_ids and rep.tag_ids[0].name.lower() == 'local') and r.amount &gt;= 0)]"/>
             <t t-set="withholding_local" t-value="[value for value in record.invoice_line_ids.mapped('tax_ids').filtered(lambda r: r.invoice_repartition_line_ids.filtered(lambda rep: rep.tag_ids and rep.tag_ids[0].name.lower() == 'local') and r.amount &lt; 0)]"/>
             <t t-set="total_transferred_local" t-value="sum((value.amount / 100) * float(record.amount_untaxed) for value in transferred_local) or 0.00"/>
-            <t t-set="total_withhold_local" t-value="sum((abs(value.amount) / 100) * float(record.amount_untaxed) for value in withholding_local) or 0.00"/>
+            <t t-set="total_withhold_local" t-value="(abs(value.amount) for value in withholding_local) or 0.00"/>
             <t t-set="taxes" t-value="{'total_withhold': taxes['total_withhold'] - total_withhold_local, 'total_transferred': taxes['total_transferred'] - total_transferred_local, 'withholding': [value for value in taxes['withholding'] if value['name'].lower() != 'local'] if taxes['withholding'] else taxes['withholding'], 'transferred': [value for value in taxes['transferred'] if value['name'].lower() != 'local'] if taxes['transferred'] else taxes['transferred']}"/>
         </xpath>
         <xpath expr="(//*[local-name()='Traslado'])[2]" position="before">
