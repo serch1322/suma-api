@@ -17,8 +17,8 @@
             string="Factura Suma 3.3"
             model="account.move"
             report_type="qweb-pdf"
-            file="account.report_factura_suma_print"
-            name="account.report_factura_suma_print"
+            file="factura.report_factura_suma_print"
+            name="factura.report_factura_suma_print"
             paperformat="paperformat_a4_personalizado"
     />
 
