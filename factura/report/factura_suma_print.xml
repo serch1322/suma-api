@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_a4_personalizado" model="report.paperformat">
+        <field name="name">Hoja A4 personalizado</field>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">42</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report
+            id="action_factura_suma_print"
+            string="Factura Suma 3.3"
+            model="account.move"
+            report_type="qweb-pdf"
+            file="account.report_factura_suma_print"
+            name="account.report_factura_suma_print"
+            paperformat="paperformat_a4_personalizado"
+    />
+
+    <template id="report_factura_suma_print">
+        <t t-call="web.html_container"> <!-- Plantilla base a importar -->
+            <t t-foreach="docs" t-as="doc"> <!-- doc: Es el registro actual desde la cual invocamos la impresión -->
+                <t t-call="web.external_layout"> <!-- Plantilla para importar el header y footer de la compañía -->
+                    <div class="page"> <!-- Hoja -->
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <strong>PEDIDO:</strong> <strong t-field="doc.name"/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+
+    </template>
+
+</odoo>
