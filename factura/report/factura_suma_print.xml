@@ -25,6 +25,13 @@
 
     <template id="report_factura_suma_print">
         <t t-call="web.html_container"> <!-- Plantilla base a importar -->
+	    <t t-if="doc.l10n_mx_edi_cfdi_uuid">
+                <!--New global variables-->
+                <t t-set="xml" t-value="doc.l10n_mx_edi_get_xml_etree()"/>
+                <t t-set="tfd" t-value="doc.l10n_mx_edi_get_tfd_etree(xml)"/>
+                <t t-set="tfd_original_string" t-value="doc._get_l10n_mx_edi_cadena()"/>
+                <t t-set="external" t-value="doc.l10n_mx_edi_get_et_etree(xml)"/>
+            </t>
             <t t-foreach="docs" t-as="doc"> <!-- doc: Es el registro actual desde la cual invocamos la impresión -->
                 <t t-call="web.basic_layout"> <!-- Plantilla para importar el header y footer de la compañía -->
                     <div class="page"> <!-- Hoja -->
