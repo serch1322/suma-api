@@ -179,12 +179,12 @@
                                 <strong>IMPORTE CON LETRA:</strong>
                             </div>
                         </div>
-                        <xpath expr="//p[@t-if='o.fiscal_position_id.note']" position="after">
-                            <t t-if="o.l10n_mx_edi_cfdi_uuid">
+                        <xpath expr="//p[@t-if='doc.fiscal_position_id.note']" position="after">
+                            <t t-if="doc.l10n_mx_edi_cfdi_uuid">
                                 <div class="row" id="complement" style="border: 1px solid black">
                                     <div class="barcode col-3">
                                         <t t-set="sello" t-value="xml.get('Sello', 'No identificado')[-8:]"/>
-                                        <img alt="Barcode" t-att-src="'/report/barcode/?type=QR&amp;value=%s' % quote_plus('https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?' + keep_query(re=o.l10n_mx_edi_cfdi_supplier_rfc, rr=o.l10n_mx_edi_cfdi_customer_rfc, tt='%.*f' % (o.currency_id.decimal_places, o.l10n_mx_edi_cfdi_amount), id=o.l10n_mx_edi_cfdi_uuid) + '&amp;fe=%s' % quote_plus(sello, 'utf-8', 'strict', '=/').replace('%2B', '+'))"/>
+                                        <img alt="Barcode" t-att-src="'/report/barcode/?type=QR&amp;value=%s' % quote_plus('https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?' + keep_query(re=doc.l10n_mx_edi_cfdi_supplier_rfc, rr=doc.l10n_mx_edi_cfdi_customer_rfc, tt='%.*f' % (doc.currency_id.decimal_places, doc.l10n_mx_edi_cfdi_amount), id=doc.l10n_mx_edi_cfdi_uuid) + '&amp;fe=%s' % quote_plus(sello, 'utf-8', 'strict', '=/').replace('%2B', '+'))"/>
                                     </div>
                                     <div class="complement-details col-9">
                                         <div class="digital-stamp">
