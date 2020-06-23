@@ -95,7 +95,7 @@
                                 <h6 t-field="doc.company_id.zip"/>
                             </div>
                             <div class="col-4 text-center">
-                                <strong></strong>
+                                <strong> <span t-field="doc.l10n_mx_edi_usage"/> </strong>
                             </div>
                             <div t-if="doc.type=='out_invoice'" class="col-4 text-center">
                                 <span>I</span>
@@ -117,7 +117,7 @@
                         </div>
                         <div class="row mb24">
                             <div class="col-4 text-center">
-                                <h6/>
+                                <strong> <span t-field="doc.l10n_mx_edi_payment_method_id"/> </strong>
                             </div>
                             <div class="col-4 text-center">
                                 <strong> <span t-field="doc.invoice_payment_term_id"/> </strong>
