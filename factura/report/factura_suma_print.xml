@@ -133,7 +133,7 @@
                         </div>
                         <div class="row mb24">
                             <div class="col-12 text-center">
-                                <h6> <span t-field="doc.ref"/> </h6>
+                                <h6> <span t-field="doc.x_studio_asunto"/> </h6>
                             </div>
                         </div>
                         <table class="table" style="border: 1px solid black">
