@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="paperformat_a4_personalizado" model="report.paperformat">
-        <field name="name">Hoja A4 personalizado</field>
+    <record id="paperformat_formato_factura" model="report.paperformat">
+        <field name="name">Formato Factura</field>
         <field name="format">A4</field>
         <field name="orientation">Portrait</field>
-        <field name="margin_top">40</field>
-        <field name="margin_bottom">42</field>
+        <field name="margin_top">7</field>
+        <field name="margin_bottom">2</field>
         <field name="margin_left">7</field>
         <field name="margin_right">7</field>
         <field name="header_spacing">35</field>
@@ -19,19 +19,217 @@
             report_type="qweb-pdf"
             file="factura.report_factura_suma_print"
             name="factura.report_factura_suma_print"
-            paperformat="paperformat_a4_personalizado"
+            paperformat="paperformat_formato_factura"
+            print_report_name="'%s' %object.name"
     />
 
     <template id="report_factura_suma_print">
         <t t-call="web.html_container"> <!-- Plantilla base a importar -->
             <t t-foreach="docs" t-as="doc"> <!-- doc: Es el registro actual desde la cual invocamos la impresión -->
-                <t t-call="web.external_layout"> <!-- Plantilla para importar el header y footer de la compañía -->
+                <t t-call="web.basic_layout"> <!-- Plantilla para importar el header y footer de la compañía -->
                     <div class="page"> <!-- Hoja -->
-                        <div class="row">
-                            <div class="col-12 text-center">
-                                <strong>PEDIDO:</strong> <strong t-field="doc.name"/>
+                        <div class="row mb24">
+                            <div class="col-4">
+                                <span t-field="doc.company_id.logo" t-options="{'widget': 'image'}" style="max-height: 45px;"/>
+                            </div>
+                            <div class="col-4">
+                                <strong> <h6 t-field="doc.company_id.name"/> </strong>
+                                <strong> <h6 t-field="doc.company_id.vat"/> </strong>
+                                <span t-field="doc.company_id.street"/> <span> C.P:</span> <span t-field="doc.company_id.zip"/>
+                            </div>
+                            <div class="col-4 text-center">
+                                <div class="title_box" id="name" style="border: 1px solid black">
+                                    <div id="title" style="background-color: #ff8000; color: white">
+                                        <strong>FACTURA</strong>
+                                    </div>
+                                    <div id="content">
+                                        <h6 t-field="doc.name"/>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="row mb24">
+                            <div class="col-5">
+                                <div class="title_box" id="cliente" style="border: 1px solid black">
+                                    <div id="title" class="text-center" style="background-color: #ff8000; color: white">
+                                        <strong>RECEPTOR</strong>
+                                    </div>
+                                    <div id="content">
+                                        <h6 t-field="doc.partner_id"/>
+                                        <h6 t-field="doc.partner_id.vat"/>
+                                        <h6> <span t-field="doc.partner_id.street"/> <span> </span> <span t-field="doc.partner_id.zip"/> </h6>
+                                        <h6> <span t-field="doc.partner_id.city"/> <span> </span> <span t-field="doc.partner_id.state_id.code"/> <span> </span> <span t-field="doc.partner_id.country_id"/> </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                            </div>
+                            <div class="col-5">
+                                <div class="title_box" id="folio" style="border: 1px solid black">
+                                    <div id="title" class="text-center" style="background-color: #ff8000; color: white">
+                                        <strong>FOLIO SAT</strong>
+                                    </div>
+                                    <div id="content">
+                                        <h6>Folio</h6>
+                                        <h6>Fecha Emisión</h6>
+                                        <h6>Fecha Certificación</h6>
+                                        <h6>Certificado Emisor</h6>
+                                        <h6>Certificado SAT</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="background-color: #ff8000; color: white">
+                            <div class="col-4 text-center">
+                                <strong>LUGAR DE EXPEDICION</strong>
+                            </div>
+                            <div class="col-4 text-center">
+                                <strong>Uso CFDI</strong>
+                            </div>
+                            <div class="col-4 text-center">
+                                <strong>TIPO</strong>
+                            </div>
+                        </div>
+                        <div class="row mb24">
+                            <div class="col-4 text-center">
+                                <h6 t-field="doc.company_id.zip"/>
+                            </div>
+                            <div class="col-4 text-center">
+                                <strong></strong>
+                            </div>
+                            <div t-if="doc.type=='out_invoice'" class="col-4 text-center">
+                                <span>I</span>
+                            </div>
+                            <div t-else="doc.type=='out_refund'" class="col-4 text-center">
+                                <span>E</span>
+                            </div>
+                        </div>
+                        <div class="row" style="background-color: #ff8000; color: white">
+                            <div class="col-4 text-center">
+                                <strong>FORMA DE PAGO</strong>
+                            </div>
+                            <div class="col-4 text-center">
+                                <strong>METODO DE PAGO</strong>
+                            </div>
+                            <div class="col-4 text-center">
+                                <strong>NUMERO DE CUENTA</strong>
+                            </div>
+                        </div>
+                        <div class="row mb24">
+                            <div class="col-4 text-center">
+                                <h6/>
+                            </div>
+                            <div class="col-4 text-center">
+                                <strong> <span t-field="doc.invoice_payment_term_id"/> </strong>
+                            </div>
+                            <div class="col-4 text-center">
+                                <strong> <span t-field="doc.invoice_partner_bank_id"/> </strong>
+                            </div>
+                        </div>
+                        <div class="row" style="background-color: #ff8000; color: white">
+                            <div class="col-12 text-center">
+                                <strong>REFERENCIA</strong>
+                            </div>
+                        </div>
+                        <div class="row mb24">
+                            <div class="col-12 text-center">
+                                <h6> <span t-field="doc.ref"/> </h6>
+                            </div>
+                        </div>
+                        <table class="table" style="border: 1px solid black">
+                            <thead class="text-center bg-info" style="color: white">
+                                <tr>
+                                    <th scope="col"><strong>Cant.</strong></th>
+                                    <th scope="col"><strong>CveServ.</strong></th>
+                                    <th scope="col"><strong>Unidad</strong></th>
+                                    <th scope="col"><strong>Descripción</strong></th>
+                                    <th scope="col"><strong>P. Unit.</strong></th>
+                                    <th scope="col"><strong>Importe</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr t-foreach="doc.invoice_line_ids" t-as="linea">
+                                    <td> <span t-field="linea.quantity" /> </td>
+                                    <td> <span t-field="linea.quantity"/> </td>
+                                    <td> <span t-field="linea.quantity"/> </td>
+                                    <td> <span t-field="linea.name"/> </td>
+                                    <td> <span t-field="linea.price_unit"/> </td>
+                                    <td> <span t-field="linea.price_subtotal"/> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-10 text-right">
+                                <strong>Sub Total:</strong>
+                            </div>
+                            <div class="col-2 text-right" style="border-top: 1px solid black;">
+                                <strong> <span t-field="doc.amount_untaxed"/> </strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-10 text-right">
+                                <strong>Total:</strong>
+                            </div>
+                            <div class="col-2 text-right" style="border-top: 1px solid black;">
+                                <strong> <span t-field="doc.amount_total"/> </strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 bg-info" style="color: white">
+                                <strong>IMPORTE CON LETRA:</strong>
+                            </div>
+                        </div>
+                        <xpath expr="//p[@t-if='o.fiscal_position_id.note']" position="after">
+                            <t t-if="o.l10n_mx_edi_cfdi_uuid">
+                                <div class="row" id="complement" style="border: 1px solid black">
+                                    <div class="barcode col-3">
+                                        <t t-set="sello" t-value="xml.get('Sello', 'No identificado')[-8:]"/>
+                                        <img alt="Barcode" t-att-src="'/report/barcode/?type=QR&amp;value=%s' % quote_plus('https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?' + keep_query(re=o.l10n_mx_edi_cfdi_supplier_rfc, rr=o.l10n_mx_edi_cfdi_customer_rfc, tt='%.*f' % (o.currency_id.decimal_places, o.l10n_mx_edi_cfdi_amount), id=o.l10n_mx_edi_cfdi_uuid) + '&amp;fe=%s' % quote_plus(sello, 'utf-8', 'strict', '=/').replace('%2B', '+'))"/>
+                                    </div>
+                                    <div class="complement-details col-9">
+                                        <div class="digital-stamp">
+                                            <span>Digital stamp of the emitter</span>
+                                        </div>
+                                        <div class="digital-stamp-content">
+                                            <span t-esc="xml.get('sello', xml.get('Sello', 'No identificado'))"/>
+                                        </div>
+                                        <div class="digital-stamp">
+                                            <span>Digital stamp SAT</span>
+                                        </div>
+                                        <div class="digital-stamp-content">
+                                            <span t-esc="tfd.get('selloSAT', tfd.get('SelloSAT', 'No identificado'))"/>
+                                        </div>
+                                        <div class="digital-stamp">
+                                            <span>Original chain complement of digital certification SAT</span>
+                                        </div>
+                                        <div class="digital-stamp-content">
+                                            <span class="nowrap" t-esc="tfd_original_string"/>
+                                        </div>
+                                        <div t-if="xml.Emisor.xpath('cfdi:ExpedidoEn', namespaces=xml.nsmap)" class="digital-stamp">
+                                            <span>Issued from</span>
+                                        </div>
+                                        <div t-if="xml.Emisor.xpath('cfdi:ExpedidoEn', namespaces=xml.nsmap)" class="digital-stamp-content">
+                                            <span t-esc="' | '.join([ '%s: %s' % (key, value) for key, value in xml.Emisor.ExpedidoEn.items()])"/>
+                                        </div>
+                                        <div class="digital-stamp">
+                                            <span>Extra Info</span>
+                                        </div>
+                                        <div class="digital-stamp-content">
+                                            <span>Emitter certificate:</span> <span t-esc="xml.get('noCertificado', xml.get('NoCertificado'))"/>
+                                            <span> | SAT Certificate:</span> <span t-esc="tfd.get('NoCertificadoSAT')"/>
+                                            <span> | Expedition place:</span> <span t-esc="xml.get('LugarExpedicion')"/>
+                                            <span> | Fiscal Regime:</span><span t-esc="xml.Emisor.get('RegimenFiscal', '')"/>
+                                            <span> | Emission Date:</span> <span t-esc="xml.get('fecha', xml.get('Fecha', '')).replace('T', ' ')"/>
+                                            <span> | Certification Date:</span> <span t-esc="tfd.get('FechaTimbrado', '').replace('T', ' ')"/>
+                                            <span> | Fiscal Folio:</span> <span t-esc="tfd.get('UUID')"/>
+                                        </div>
+                                        <div class="digital-stamp-content text-center">
+                                            <strong>This document is a printed representation of a CFDI</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </xpath>
                     </div>
                 </t>
             </t>
