@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <!-- Vista Formulario -->
+    <record id="heredar_formulario_orden_venta" model="ir.ui.view">
+        <field name="name">heredar.formulario.orden.venta</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <!-- Botones -->
+            <xpath expr="//header" position="inside">
+                <button name="status_remision" string="Crear Remisión" type="object" class="btn-info" attrs="{'invisible': [('invoice_status', '!=', 'to invoice')]}"/>
+                <button name="status_remision_pagada" string="Pagar Remisión" type="object" class="btn-info" attrs="{'invisible':[('state', '!=', 'remision')]}"/>
+            </xpath>
+            <button name="action_cancel" position="attributes">
+                <attribute name="states">draft,sent,sale,remision,remision_pagada</attribute>
+            </button>
+            <!-- Status -->
+            <field name="state" position="attributes">
+                <attribute name="statusbar_visible">draft,sent,sale,remision,remision_pagada</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>
