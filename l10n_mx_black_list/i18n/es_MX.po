@@ -1,0 +1,126 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_mx_black_list
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0-20200417\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-09 03:30+0000\n"
+"PO-Revision-Date: 2020-06-09 03:30+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_mx_black_list
+#: model:ir.actions.act_window,name:l10n_mx_black_list.l10n_mx_black_list_action
+#: model:ir.ui.menu,name:l10n_mx_black_list.black_list_menu
+msgid "Black list"
+msgstr "Lista negra"
+
+#. module: l10n_mx_black_list
+#: model:ir.model,name:l10n_mx_black_list.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: l10n_mx_black_list
+#: model:ir.model.fields,field_description:l10n_mx_black_list.field_l10n_mx_black_list__contributor_name
+msgid "Contributor Name"
+msgstr "Nombre del contribuyente"
+
+#. module: l10n_mx_black_list
+#: model:ir.model.fields,field_description:l10n_mx_black_list.field_l10n_mx_black_list__contributor_situation
+msgid "Contributor Situation"
+msgstr "Situacion del contribuyente"
+
+#. module: l10n_mx_black_list
+#: model:ir.model.fields,field_description:l10n_mx_black_list.field_l10n_mx_black_list__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_mx_black_list
+#: model:ir.model.fields,field_description:l10n_mx_black_list.field_l10n_mx_black_list__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: l10n_mx_black_list
+#: model:ir.model.fields,field_description:l10n_mx_black_list.field_l10n_mx_black_list__display_name
+msgid "Display Name"
+msgstr "Mostrar nombre"
+
+#. module: l10n_mx_black_list
+#: model:ir.actions.server,name:l10n_mx_black_list.get_black_list_ir_actions_server
+#: model:ir.cron,cron_name:l10n_mx_black_list.get_black_list
+#: model:ir.cron,name:l10n_mx_black_list.get_black_list
+msgid "Get Black List"
+msgstr "Obtener lista negra"
+
+#. module: l10n_mx_black_list
+#: model:ir.model.fields,field_description:l10n_mx_black_list.field_l10n_mx_black_list__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_mx_black_list
+#: model:ir.actions.act_window,name:l10n_mx_black_list.account_move_list_action
+msgid "Invoice"
+msgstr "Facturas"
+
+#. module: l10n_mx_black_list
+#: model:ir.ui.menu,name:l10n_mx_black_list.account_move_menu
+msgid "Invoicing"
+msgstr "Facturacion"
+
+#. module: l10n_mx_black_list
+#: model:ir.model,name:l10n_mx_black_list.model_account_move
+msgid "Journal Entries"
+msgstr "Asientos contables"
+
+#. module: l10n_mx_black_list
+#: model:ir.model.fields,field_description:l10n_mx_black_list.field_l10n_mx_black_list____last_update
+msgid "Last Modified on"
+msgstr "Ultima modificacion en"
+
+#. module: l10n_mx_black_list
+#: model:ir.model.fields,field_description:l10n_mx_black_list.field_l10n_mx_black_list__write_uid
+msgid "Last Updated by"
+msgstr "Ultima actualizacion por"
+
+#. module: l10n_mx_black_list
+#: model:ir.model.fields,field_description:l10n_mx_black_list.field_l10n_mx_black_list__write_date
+msgid "Last Updated on"
+msgstr "Ultima actualizacion en"
+
+#. module: l10n_mx_black_list
+#: model:ir.model.fields,field_description:l10n_mx_black_list.field_l10n_mx_black_list__no
+msgid "No."
+msgstr "No."
+
+#. module: l10n_mx_black_list
+#: model:ir.ui.menu,name:l10n_mx_black_list.res_partner_menu
+msgid "Partners"
+msgstr "Socios"
+
+#. module: l10n_mx_black_list
+#: model:ir.actions.act_window,name:l10n_mx_black_list.res_partner_list_action
+msgid "Partners list"
+msgstr "Lista de socios"
+
+#. module: l10n_mx_black_list
+#: model:ir.model.fields,field_description:l10n_mx_black_list.field_l10n_mx_black_list__name
+msgid "RFC"
+msgstr "RFC"
+
+#. module: l10n_mx_black_list
+#: code:addons/l10n_mx_black_list/models/account_move.py:0
+#: code:addons/l10n_mx_black_list/models/res_partner.py:0
+#, python-format
+msgid "RFC in the black list"
+msgstr "El RFC esta en la lista negra"
+
+#. module: l10n_mx_black_list
+#: model:ir.model,name:l10n_mx_black_list.model_l10n_mx_black_list
+msgid "l10n MX black list"
+msgstr "l10n MX black list"

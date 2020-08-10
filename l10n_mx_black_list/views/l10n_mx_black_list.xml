@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="l10n_mx_black_list_view_tree" model="ir.ui.view">
+        <field name="name">l10n.mx.black.list.view.tree</field>
+        <field name="model">l10n.mx.black_list</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="false" delete="false">
+                <field name="no"/>
+                <field name="name"/>
+                <field name="contributor_name"/>
+                <field name="contributor_situation"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="l10n_mx_black_list_action" model="ir.actions.act_window">
+        <field name="name">Black list</field>
+        <field name="res_model">l10n.mx.black_list</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="black_list_menu" name="Black list" action="l10n_mx_black_list_action" parent="account.menu_finance_configuration"/>
+</odoo>

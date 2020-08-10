@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="get_black_list" model="ir.cron">
+        <field name="name">Get Black List</field>
+        <field name="active" eval="True"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="model_id" ref="model_l10n_mx_black_list"/>
+        <field name="state">code</field>
+        <field name="code">
+                model.get_data()
+        </field>
+    </record>
+</odoo>
