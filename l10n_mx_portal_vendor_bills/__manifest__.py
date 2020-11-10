@@ -20,7 +20,7 @@
     "depends": [
         'l10n_mx_edi_vendor_bills',
         'purchase',
-        'website_portal',
+        'portal',
     ],
     "demo": [
     ],
