@@ -44,8 +44,8 @@ class AttachXmlsWizard(models.TransientModel):
                 supplier: (res.partner) supplier partner
                 currency_id: (res.currency) payment currency of the purchase
         """
-        inv_obj = self.env['account.invoice']
-        line_obj = self.env['account.invoice.line']
+        inv_obj = self.env['account.move']
+        line_obj = self.env['account.move.line']
         journal = inv_obj.with_context(type='in_invoice')._default_journal()
         prod_obj = self.env['product.product']
         # sat_code_obj = self.env['l10n_mx_edi.product.sat.code']
@@ -185,7 +185,7 @@ class AttachXmlsWizard(models.TransientModel):
         :rtype: dict
         """
         inv_id = self.env.context.get('active_id', [])
-        inv_obj = self.env['account.invoice']
+        inv_obj = self.env['account.move']
         inv = inv_obj.browse(inv_id)
         try:
             xml_str = base64.decodestring(xml64.replace(

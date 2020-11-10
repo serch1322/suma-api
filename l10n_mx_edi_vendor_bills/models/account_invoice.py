@@ -16,7 +16,7 @@ except ImportError as err:
 
 
 class AccountInvoice(models.Model):
-    _inherit = 'account.invoice'
+    _inherit = 'account.move'
 
     l10n_mx_edi_uuid = fields.Char(
         'Fiscal Folio', copy=False, index=True,
