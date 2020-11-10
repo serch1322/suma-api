@@ -50,7 +50,6 @@ class AccountInvoice(models.Model):
         node = cfdi.Complemento.xpath(attribute, namespaces=namespace)
         return node[0] if node else {}
 
-    @api.multi
     def _compute_l10n_mx_report_name(self):
         """Compute the attachment name
         """
@@ -67,7 +66,6 @@ class AccountInvoice(models.Model):
                 fname += '_%s' % (count + 1)
             invoice.l10n_mx_edi_cfdi_name = fname.replace('/', '')
 
-    @api.multi
     def generate_xml_attachment(self, cfdi):
         self.ensure_one()
         name = '%s.xml' % self.l10n_mx_edi_cfdi_name

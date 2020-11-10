@@ -14,7 +14,6 @@ class AttachXmlsWizard(models.TransientModel):
 
     dragndrop = fields.Char(help='Field to upload files')
 
-    @api.multi
     def collect_taxes(self, taxes_xml):
         """ Get tax data of the Impuesto node of the xml and return
         dictionary with taxes datas
@@ -38,7 +37,6 @@ class AttachXmlsWizard(models.TransientModel):
                           'amount': amount_xml})
         return taxes
 
-    @api.multi
     def create_invoice(self, xml, supplier, currency_id):
         """ Create supplier invoice from xml file
             Args:
