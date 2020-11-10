@@ -10,7 +10,7 @@
     "license": "OEEL-1",
     "depends": [
         "account",
-        "document",
+        "documents",
     ],
     "demo": [
     ],
