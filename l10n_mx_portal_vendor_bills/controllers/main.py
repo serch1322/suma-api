@@ -6,7 +6,7 @@ import logging
 from odoo import http, _
 from odoo.http import request
 from odoo.exceptions import AccessError
-from odoo.addons.website_portal.controllers.main import website_account
+from odoo.addons.portal.controllers.main import website_account
 
 _logger = logging.getLogger(__name__)
 
