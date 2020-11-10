@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="portal_my_home_menu_purchase" inherit_id="website_portal.portal_layout" name="Portal layout : purchase menu entries" priority="25">
+    <template id="portal_my_home_menu_purchase" inherit_id="portal.portal_layout" name="Portal layout : purchase menu entries" priority="25">
         <xpath expr="//ul[contains(@class,'o_portal_submenu')]" position="inside">
             <li t-if="page_name == 'purchase' or purchase_order">
                 <a t-attf-href="/my/purchase?{{ keep_query() }}" t-if="purchase_order">Purchase Orders</a>
@@ -11,7 +11,7 @@
             </li>
         </xpath>
     </template>
-    <template id="portal_my_home_purchase" inherit_id="website_portal.portal_my_home" name="Portal My Home : purchase entry" priority="25">
+    <template id="portal_my_home_purchase" inherit_id="portal.portal_my_home" name="Portal My Home : purchase entry" priority="25">
         <xpath expr="//div[contains(@class,'o_my_home_content')]" position="inside">
             <h3 class="page-header">
                 <a href="/my/purchase">Purchase Orders
@@ -28,7 +28,7 @@
         </xpath>
     </template>
     <template id="portal_my_purchase_orders" name="Portal: My Purchase Orders">
-        <t t-call="website_portal.portal_layout">
+        <t t-call="portal.portal_layout">
             <h3>Purchase Orders
       </h3>
             <div class="panel panel-default" t-if="orders">
@@ -81,7 +81,7 @@
         <t t-if="not user">
             <t t-set="user" t-value="purchase_order.sudo().partner_id.user_ids"/>
         </t>
-        <t t-call="website.layout">
+        <t t-call="portal.layout">
             <div class="container mt16">
                 <div class="navbar navbar-default">
                     <div class="navbar-header">
@@ -220,7 +220,7 @@
         </t>
     </template>
     <template id="attachments_uploaded" name="Thank you!">
-        <t t-call="website.layout">
+        <t t-call="portal.layout">
             <div id="wrap">
                 <div class="oe_structure"/>
                 <div class="container">
@@ -245,7 +245,7 @@
                             </ul>
                         </div>
                         <div class="col-md-4">
-                            <t t-call="website.company_description"/>
+                            <t t-call="portal.company_description"/>
                         </div>
                     </div>
                 </div>
