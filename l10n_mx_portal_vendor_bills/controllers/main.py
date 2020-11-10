@@ -29,7 +29,7 @@ class SaleOrderAttachments(http.Controller):
         return json.dumps({'id': att_ids._ids})
 
 
-class WebsiteAccount(website_account):
+class WebsiteAccount(CustomerPortal):
 
     @http.route()
     def account(self, **kw):
