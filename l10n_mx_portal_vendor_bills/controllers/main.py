@@ -20,8 +20,8 @@ class SaleOrderAttachments(http.Controller):
         att_obj = request.env['ir.attachment']
         xml = post.get('xml[0]')
         errors, filename = att_obj.parse_xml(xml)
-    	_logger.info(errors)
-    	_logger.info(filename)
+#    	_logger.info(errors)
+#    	_logger.info(filename)
         if not errors.get(xml.filename):
             return json.dumps({'error_messages': errors})
         att_ids = purchase_obj.insert_attachment(
