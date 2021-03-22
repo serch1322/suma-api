@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ir.mail.server -->
+    <record model="ir.ui.view" id="ir_mail_server_form_inherited">
+        <field name="name">ir.mail_server</field>
+        <field name="model">ir.mail_server</field>
+        <field name="inherit_id" ref="base.ir_mail_server_form"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="user_id" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="mail_compose_form_view">
+        <field name="name">mail.compose.form.view</field>
+        <field name="model">mail.message</field>
+        <field name="inherit_id" ref="mail.mail_message_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='mail_server_id']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="mail_mail_form_view">
+        <field name="name">mail.mail.form.view</field>
+        <field name="model">mail.mail</field>
+        <field name="inherit_id" ref="mail.view_mail_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='mail_server_id']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
